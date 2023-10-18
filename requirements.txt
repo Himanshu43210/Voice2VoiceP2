@@ -1,0 +1,17 @@
+langchain
+openai
+python-dotenv
+chromadb
+tiktoken
+pymongo
+faiss-cpu
+sentence-transformers
+scikit-learn
+nest_asyncio
+# pydub
+# pyaudio
+# sounddevice
+# soundfile
+# google.cloud.speech
+# wavio
+flask
