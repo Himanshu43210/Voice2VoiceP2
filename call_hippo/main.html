@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click-to-Call with CallHippo</title>
+</head>
+<body>
+    <button onclick="initiateCall('+18004580811')">Call +18004580811</button>
+
+    <script>
+        function initiateCall(phoneNumber) {
+            fetch('http://localhost:3000/initiateCall', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    phoneNumber: '+18004580811',
+                    loggedInUserEmail: 'aashi@techhelps.co.in'
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    alert('Call initiated!');
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error.message);
+            });
+        }
+
+    </script>
+</body>
+</html>
