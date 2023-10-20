@@ -22,9 +22,6 @@ model_name="llama-2-70b-chat"
 sys.path.append("./components")
 sys.path.append("./constants")
 import speech_to_text
-# from filler_mapping import classify_and_play_audio, refresh_learning_data
-# from dictionary import phrases_dict
-
 from pymongo import MongoClient
 
 # MongoDB setup
