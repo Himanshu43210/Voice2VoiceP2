@@ -30,9 +30,7 @@ from pymongo import MongoClient
 # MongoDB setup
 MONGO_URI = os.environ.get('MONGO_DB_URI')  # Your MongoDB connection string
 client = MongoClient(MONGO_URI)
-#db = client['your_database_name']  # Replace with your database name
 MONGO_DB_NAME = os.environ.get('MONGO_DB_NAME')
-# collection = db['your_collection_name']  # Replace with your collection name
 MONGO_DB_COLLECTION = os.environ.get('MONGO_DB_COLLECTION')
 
 db = client[MONGO_DB_NAME]
