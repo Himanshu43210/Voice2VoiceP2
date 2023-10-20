@@ -94,7 +94,11 @@ def chat_with_user():
             ),
         }
     ]
-
+    audio_path = f"./assets/audio_files_pixel/Intro.wav"
+    wav_obj = wavio.read(audio_path)
+    sd.play(wav_obj.data, samplerate=wav_obj.rate)
+    sd.wait()  # Wait until audio playback is done
+    
     while True:
         query = speech_to_text.transcribe_stream()
 
