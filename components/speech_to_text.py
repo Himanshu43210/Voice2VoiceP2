@@ -1,6 +1,6 @@
 
 # # # # Speech to text DEEPGRAM
-
+### Transcription should not be empty
 
 import os
 import asyncio
@@ -55,19 +55,23 @@ class Transcriber:
                         .get("alternatives", [{}])[0]
                         .get("transcript", "")
                     )
-                    print("Transcript:", transcript)
-                    self.stop_pushing = True  # Set the flag to stop pushing data to the queue
-                    return transcript
+                    # Check if the transcript is empty or not
+                    if transcript.strip():  
+                        print("Transcript:", transcript)
+                        self.stop_pushing = True  # Set the flag to stop pushing data to the queue
+                        return transcript
         except asyncio.TimeoutError:
             # print("Receiver coroutine timed out. Stopping...")
             await ws.close()
             return None
+
 
     async def run(self, key):
         deepgram_url = f"wss://api.deepgram.com/v1/listen?punctuate=true&encoding=linear16&sample_rate=16000"
         
         # Open the microphone stream
         p = pyaudio.PyAudio()
+        # self.stream = p.open(format=FORMAT, channels=1, rate=16000, input=True, input_device_index=11, stream_callback=self.mic_callback)
         self.stream = p.open(format=FORMAT, channels=1, rate=16000, input=True, stream_callback=self.mic_callback)
         self.stream.start_stream()
         
