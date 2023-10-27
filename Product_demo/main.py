@@ -97,23 +97,6 @@ def get_answer_from_gpt_turbo(messages, audio_streamer):
 
     return answer
 
-def click_button(reference_image_path):
-    try:
-        # Find the center of the pause button based on the reference image
-        x, y = pyautogui.locateCenterOnScreen(reference_image_path)
-        
-        # Click on the located center
-        pyautogui.click(x, y)
-        print('f{reference_image_path} button clicked!')
-    except TypeError:
-        print('f{reference_image_path} button not found on screen!')
-        pyautogui.click()
-
-def stream_audio_playht(text):
-    print("stream_audio_playht called")
-    # Use the stream_text_to_audio function to stream the text
-    stream_text_to_audio(text, os.environ.get("PLAYHT_API_KEY"), os.environ.get("PLAYHT_USER_ID"))
-
 elapsed_time = 0  # Global variable to store elapsed time
 
 def get_content_for_time(elapsed_time_seconds, content_dict):
