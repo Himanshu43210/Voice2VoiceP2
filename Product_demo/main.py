@@ -4,8 +4,11 @@ import pyautogui
 import os
 import threading
 import sys
-# Initialize the OpenAI API with your API key
-openai.api_key = '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'
+from dotenv import load_dotenv
+load_dotenv()
+
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+openai.api_key = OPENAI_API_KEY
 
 sys.path.append("./components")
 from speech_to_text import transcribe_stream
