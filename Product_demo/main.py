@@ -15,8 +15,6 @@ from speech_to_text import transcribe_stream
 from stream_text_to_audio import stream_text_to_audio
 from content_dictionary import content_dict
 
-# BUFFER_SIZE = 100  # you can adjust this based on your preference
-
 pause_event = threading.Event()  # This event will be used to pause/resume the timer thread
 
 class ContinuousAudioStreamer:
@@ -135,9 +133,6 @@ def chat_with_user():
     audio_streamer = ContinuousAudioStreamer()
     audio_streamer.start()
 
-    #sales_bot_statement = "You are a sales bot. You have to solve the doubts of the user with the help of the following information. Answer in short. In the end, always ask the user if their doubt is cleared. If they say no, ask them what doubt they have. If they say yes, reply with 'play video'."
-    #sales_bot_statement = "You are a sales bot. You are supposed to solve the doubts of the user with the help of the following information. Answer in short. In the end, always ask the user if their doubt is cleared. If the doubt is not cleared, ask them what doubt they have. Reply according to the last query. If the doubt is cleared, reply with 'Alright! I will resume the video'."
-    #sales_bot_statement = "You are a sales bot. You have to solve the doubts of the user with the help of the following information. Answer in short. In the end, always ask the user if their doubt is cleared. If the doubt is not cleared, ask them what doubt they have. If the doubt is cleared, reply with 'Alright! I will resume the video'."
     sales_bot_statement = "You are a sales bot. You have to solve the doubts of the user with the help of the following information. Answer in short. In the end, always ask the user if their doubt is cleared. If the doubt is not cleared, ask them what doubt they have. If the doubt is cleared, reply only with 'Alright! I will resume the video'."
     
     # Initialize messages list with the sales bot statement
