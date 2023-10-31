@@ -11,6 +11,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import sounddevice as sd
 import wavio
 import pyautogui as pg
+import webbrowser
 import time
 
 # Load environment variables from .env file
@@ -137,6 +138,13 @@ def chat_with_user():
 
         messages.append({"role": "assistant", "content": full_content})
 
+def open_website(url):
+        webbrowser.open(url, new=2)  # new=2 opens in a new tab, if possible
+
+website = 'https://dialer.callhippo.com/dial'
+open_website(website)
+
+time.sleep(15)
 
 while True:  # This will create an infinite loop
     accept = pg.locateOnScreen("accept.png")
