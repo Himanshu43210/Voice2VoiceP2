@@ -1,17 +1,18 @@
 # Call Hippo receiver
+from sklearn.feature_extraction.text import TfidfVectorizer
+from dotenv import load_dotenv
+import sounddevice as sd
+import soundfile as sf
+import pyautogui as pg
+import numpy as np
+import webbrowser
+import datetime
 import os
 import uuid
-import datetime
 import openai
-from dotenv import load_dotenv
-import numpy as np
 import faiss
 import sys
-from sklearn.feature_extraction.text import TfidfVectorizer
-import sounddevice as sd
 import wavio
-import pyautogui as pg
-import webbrowser
 import time
 
 # Load environment variables from .env file
@@ -96,11 +97,13 @@ def chat_with_user():
             ),
         }
     ]
-    audio_path = f"./assets/audio_files_pixel/Intro.wav"
-    wav_obj = wavio.read(audio_path)
-    sd.play(wav_obj.data, samplerate=wav_obj.rate)
-    sd.wait()  # Wait until audio playback is done
-    
+
+    # Playing intro audio
+    audio_path = "./assets/audio_files_pixel/Intro.wav"
+    data, samplerate = sf.read(audio_path)
+    sd.play(data, samplerate)
+    sd.wait()
+
     while True:
         query = speech_to_text.transcribe_stream()
 
@@ -141,18 +144,20 @@ def chat_with_user():
 def open_website(url):
         webbrowser.open(url, new=2)  # new=2 opens in a new tab, if possible
 
+# Opening call hipppo dialer
 website = 'https://dialer.callhippo.com/dial'
 open_website(website)
 
 time.sleep(15)
 
-while True:  # This will create an infinite loop
-    accept = pg.locateOnScreen("accept.png")
+while True:  # Loop to check for incoming calls
+    accept = pg.locateOnScreen("assets/accept.png")
     
     if accept is not None:
-        pg.click(accept)
+        # pg.click(accept)
+        print("Image found!")
         chat_with_user()  # Call the chat_with_user function here
-        break  # If you want to exit the loop after calling the chat_with_user function, otherwise remove this line
+        break  
     else:
         print("Image not found!")
         time.sleep(5) 
