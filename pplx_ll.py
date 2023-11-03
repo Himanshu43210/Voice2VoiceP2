@@ -1,4 +1,4 @@
-########################## FINALLL (((sending the last sentence to faiss)))
+# Lowest latency, no mongo db connection, streamed answer going to faiss
 import os
 import uuid
 import datetime
