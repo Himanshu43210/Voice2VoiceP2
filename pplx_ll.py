@@ -1,4 +1,4 @@
-# Lowest latency, no mongo db connection, streamed answer going to faiss
+# Lowest latency, no mongo db connection, streamed answer is sent to faiss
 import os
 import uuid
 import datetime
