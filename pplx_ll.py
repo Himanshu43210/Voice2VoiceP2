@@ -11,6 +11,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import sounddevice as sd
 import wavio
 import re
+import time
+import pyautogui as pg
+import webbrowser
 
 # Load environment variables from .env file
 load_dotenv()
@@ -139,5 +142,23 @@ def chat_with_user():
         if content.strip():
             messages.append({"role": "assistant", "content": content.strip()})
             
-if __name__ == "__main__":
-    chat_with_user()
+def open_website(url):
+        webbrowser.open(url, new=2)  # new=2 opens in a new tab, if possible
+
+# Opening call hipppo dialer
+website = 'https://dialer.callhippo.com/dial'
+open_website(website)
+
+time.sleep(15)
+
+while True:  # Loop to check for incoming calls
+    accept = pg.locateOnScreen("assets/accept.png")
+    
+    if accept is not None:
+        # pg.click(accept)
+        print("Image found!")
+        chat_with_user()  # Call the chat_with_user function here
+        break  
+    else:
+        print("Image not found!")
+        time.sleep(5) 
